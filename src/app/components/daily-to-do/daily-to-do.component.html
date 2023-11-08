@@ -1,0 +1,11 @@
+<mat-card class="to-do-list-card">
+    <mat-card-content>
+        <div *ngFor="let task of tasks">
+            <mat-checkbox color="primary">{{ task.name }}</mat-checkbox>
+        </div>
+        <button (click)="addNewToDoListItem()" class="add-to-do-item-button" mat-button color="primary" aria-label="Add a new To Do Item Button">
+            <mat-icon>control_point</mat-icon>
+            add a new item
+        </button>
+    </mat-card-content>
+</mat-card>
