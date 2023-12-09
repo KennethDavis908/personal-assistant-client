@@ -1,8 +1,12 @@
 <mat-card class="to-do-list-card">
     <mat-card-content>
-        <div *ngFor="let task of tasks">
-            <mat-checkbox color="primary">{{ task.name }}</mat-checkbox>
+        <div *ngIf="toDoList?.tasks?.length">
+            <div *ngFor="let task of toDoList.tasks">
+                <mat-checkbox color="primary">{{ task.name }}</mat-checkbox>
+            </div>
         </div>
+        <div *ngIf="!toDoList?.tasks?.length" class="missing-items"><i>No Items To Display</i></div>
+        
         <button (click)="addNewToDoListItem()" class="add-to-do-item-button" mat-button color="primary" aria-label="Add a new To Do Item Button">
             <mat-icon>control_point</mat-icon>
             add a new item

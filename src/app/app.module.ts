@@ -13,12 +13,16 @@ import { NewToDoListItemDialogComponent } from './components/new-to-do-list-item
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DailyToDoComponent,
     NewToDoListItemDialogComponent,
+    MainPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-bottom-right',
+      progressBar: true,
+      maxOpened: 5,
+    }),
   ],
   exports: [
     

@@ -6,3 +6,10 @@
 .add-to-do-item-button {
     margin: 0 0 0 1em;
 }
+
+.missing-items {
+    text-align: center;
+    margin: 1em;
+    font-size: .9em;
+    color: gray;
+}

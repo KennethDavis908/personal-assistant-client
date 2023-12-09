@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { DailyToDoComponent } from './components/daily-to-do/daily-to-do.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/daily-to-do', pathMatch: 'full' },
-  { path: 'daily-to-do', component: DailyToDoComponent},
+  { path: '', redirectTo: '/daily', pathMatch: 'full' },
+  { path: 'daily', component: MainPageComponent},
 ]
 
 @NgModule({
