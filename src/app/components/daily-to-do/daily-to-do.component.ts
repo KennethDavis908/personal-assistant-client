@@ -16,12 +16,6 @@ export class DailyToDoComponent {
 
   constructor(public dialog: MatDialog) {}
 
-  ngOnChanges () {
-    console.log(`Loading: ${this.loading}`)
-    console.log(`To Do List:`)
-    console.log(this.toDoList)
-  }
-
   addNewToDoListItem = (): void => {
     const dialogRef = this.dialog.open(NewToDoListItemDialogComponent);
 
