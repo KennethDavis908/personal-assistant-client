@@ -11,9 +11,16 @@ import { NewToDoListItemDialogComponent } from '../new-to-do-list-item-dialog/ne
 })
 export class DailyToDoComponent {
   @Input() toDoList: ToDoList
+  @Input() loading: boolean
   @Output() newTaskEvent = new EventEmitter();
 
   constructor(public dialog: MatDialog) {}
+
+  ngOnChanges () {
+    console.log(`Loading: ${this.loading}`)
+    console.log(`To Do List:`)
+    console.log(this.toDoList)
+  }
 
   addNewToDoListItem = (): void => {
     const dialogRef = this.dialog.open(NewToDoListItemDialogComponent);

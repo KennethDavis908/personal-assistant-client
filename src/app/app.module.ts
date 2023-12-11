@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { NewToDoListItemDialogComponent } from './components/new-to-do-list-item-dialog/new-to-do-list-item-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -34,6 +35,7 @@ import { MainPageComponent } from './components/main-page/main-page.component';
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

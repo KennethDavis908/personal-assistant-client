@@ -7,9 +7,15 @@
     margin: 0 0 0 1em;
 }
 
-.missing-items {
+.task-list-message {
     text-align: center;
     margin: 1em;
     font-size: .9em;
     color: gray;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

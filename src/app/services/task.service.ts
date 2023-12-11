@@ -20,7 +20,7 @@ export class TaskService {
           `Failed to save task due to HTTP ${error.status}`,
           'Error Saving Task'
         );
-        return of(task);
+        throw error;
       })
     )
   }

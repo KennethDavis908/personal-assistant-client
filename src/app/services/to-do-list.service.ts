@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastService } from './toast.service';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ToDoList } from '../models/to-do-list';
 import { environment } from 'src/environments/environment';
@@ -20,7 +20,7 @@ export class ToDoListService {
           `Failed to retrieve to do list due to HTTP ${error.status}`,
           'Error retrieving To Do List'
         );
-        return of(new ToDoList(0, new Date(), [],))
+        throw error
       })
     )
   }

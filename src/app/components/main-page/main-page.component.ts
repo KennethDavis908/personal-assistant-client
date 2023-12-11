@@ -12,6 +12,7 @@ import { ToDoListService } from 'src/app/services/to-do-list.service';
 export class MainPageComponent {
 
   toDoList: ToDoList;
+  toDoListLoading: boolean = true;
 
   constructor(
     private toDoListService: ToDoListService,
@@ -20,8 +21,14 @@ export class MainPageComponent {
 
   ngOnInit(): void {
     this.toDoListService.getByDate(new Date()).subscribe(
-      (toDoList) => {
-        this.toDoList = toDoList;
+      {
+        next: (toDoList) => {
+          if (toDoList.id) this.toDoList = toDoList;
+          this.toDoListLoading = false
+        },
+        error: (error) => {
+          this.toDoListLoading = false
+        }
       }
     )
   }
@@ -29,7 +36,7 @@ export class MainPageComponent {
   addNewTask(task: Task) {
     this.taskService.upsertTask(task).subscribe(
       (result: Task) => {
-        if (task.id) this.toDoList.tasks.push(result)
+        if (result.id) this.toDoList.tasks.push(result)
       }
     )
   }

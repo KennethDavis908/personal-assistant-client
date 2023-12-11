@@ -1,15 +1,31 @@
 <mat-card class="to-do-list-card">
-    <mat-card-content>
-        <div *ngIf="toDoList?.tasks?.length">
-            <div *ngFor="let task of toDoList.tasks">
-                <mat-checkbox color="primary">{{ task.name }}</mat-checkbox>
+    <mat-card-header class="center">
+        <mat-card-title>
+            To Do List
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="!loading; else loadingSpinner">
+        <div *ngIf="toDoList">
+            <div *ngIf="toDoList.tasks?.length">
+                <div *ngFor="let task of toDoList.tasks">
+                    <mat-checkbox color="primary">{{ task.name }}</mat-checkbox>
+                </div>
             </div>
+            <div *ngIf="!toDoList.tasks?.length" class="task-list-message"><i>No Items To Display</i></div>
+
+            <button (click)="addNewToDoListItem()" class="add-to-do-item-button" mat-button color="primary"
+                aria-label="Add a new To Do Item Button">
+                <mat-icon>control_point</mat-icon>
+                add a new item
+            </button>
         </div>
-        <div *ngIf="!toDoList?.tasks?.length" class="missing-items"><i>No Items To Display</i></div>
-        
-        <button (click)="addNewToDoListItem()" class="add-to-do-item-button" mat-button color="primary" aria-label="Add a new To Do Item Button">
-            <mat-icon>control_point</mat-icon>
-            add a new item
-        </button>
+        <div *ngIf="!toDoList" class="task-list-message">
+            <i>Error Loading Content, Please Try Again Later.</i>
+        </div>
     </mat-card-content>
 </mat-card>
+<ng-template #loadingSpinner>
+    <mat-card-content class="center">
+        <mat-spinner></mat-spinner>
+    </mat-card-content>
+</ng-template>
