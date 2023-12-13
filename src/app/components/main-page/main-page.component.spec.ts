@@ -4,7 +4,6 @@ import { MainPageComponent } from './main-page.component';
 import { ToDoListService } from 'src/app/services/to-do-list.service';
 import { TaskService } from 'src/app/services/task.service';
 import { DailyToDoComponent } from '../daily-to-do/daily-to-do.component';
-import { AppModule } from 'src/app/app.module';
 import { ToDoList } from 'src/app/models/to-do-list';
 import { of } from 'rxjs';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -44,8 +43,6 @@ describe('MainPageComponent', () => {
         MatIconModule,
       ]
     })
-    
-    // .compileComponents();
 
     fixture = TestBed.createComponent(MainPageComponent);
     component = fixture.componentInstance;
