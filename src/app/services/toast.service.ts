@@ -31,7 +31,7 @@ export class ToastService {
   }
 
   public error(message: string, title?: string): void {
-    this.toastr.error(message, title, { timeOut: 5000, ...this.configOptions });
+    this.toastr.error(message, title, { ...this.configOptions, timeOut: 5000  });
   }
 
   public errorUntilAcknowledge(message: string, title?: string): void {

@@ -36,7 +36,7 @@ export class MainPageComponent {
   addNewTask(task: Task) {
     this.taskService.upsertTask(task).subscribe(
       (result: Task) => {
-        if (result.id) this.toDoList.tasks.push(result)
+        this.toDoList.tasks.push(result)
       }
     )
   }
