@@ -4,12 +4,14 @@ import { MainPageComponent } from './main-page.component';
 import { ToDoListService } from 'src/app/services/to-do-list.service';
 import { TaskService } from 'src/app/services/task.service';
 import { DailyToDoComponent } from '../daily-to-do/daily-to-do.component';
+import { AppModule } from 'src/app/app.module';
 import { ToDoList } from 'src/app/models/to-do-list';
 import { of } from 'rxjs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Task } from 'src/app/models/task';
+import { By } from '@angular/platform-browser';
 
 describe('MainPageComponent', () => {
   let component: MainPageComponent;
@@ -43,6 +45,8 @@ describe('MainPageComponent', () => {
         MatIconModule,
       ]
     })
+    
+    // .compileComponents();
 
     fixture = TestBed.createComponent(MainPageComponent);
     component = fixture.componentInstance;
@@ -57,8 +61,14 @@ describe('MainPageComponent', () => {
     expect(toDoListService.getByDate).toHaveBeenCalledTimes(1);
   })
 
+  it('should render a to do list', () => {
+    const toDoList = fixture.debugElement.query(By.css('app-daily-to-do'))
+    expect(toDoList).toBeTruthy()
+  })
+
   it('#addNewTask(task) should call to upsert the task', () => {
-    component.addNewTask(mockUpsertTask)
+    const toDoList = fixture.debugElement.query(By.css('app-daily-to-do'))
+    toDoList.triggerEventHandler('newTaskEvent', mockUpsertTask)
     expect(taskService.upsertTask).toHaveBeenCalledOnceWith(mockUpsertTask)
   })
 });
