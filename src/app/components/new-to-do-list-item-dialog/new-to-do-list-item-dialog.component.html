@@ -1,0 +1,15 @@
+<mat-dialog-content>
+    <form>
+        <mat-form-field>
+            <mat-label>Task Name</mat-label>
+            <input matInput placeholder="Ex. Get Groceries" [formControl]="taskFormControl"
+                [errorStateMatcher]="matcher" cdkFocusInitial />
+            <mat-error *ngIf="taskFormControl.hasError('required')">Task Name is
+                <strong>required</strong></mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [disabled]="!taskFormControl.valid" color="primary" (click)="close()">Save</button>
+</mat-dialog-actions>

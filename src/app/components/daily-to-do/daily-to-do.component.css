@@ -1,0 +1,21 @@
+.to-do-list-card {
+    width: 45%;
+    margin: 1em;
+}
+
+.add-to-do-item-button {
+    margin: 0 0 0 1em;
+}
+
+.task-list-message {
+    text-align: center;
+    margin: 1em;
+    font-size: .9em;
+    color: gray;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
