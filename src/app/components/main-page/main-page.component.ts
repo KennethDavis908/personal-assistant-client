@@ -46,7 +46,6 @@ export class MainPageComponent {
         } else {
           this.toDoList.tasks.push(result)
         }
-        
       }
     )
   }
