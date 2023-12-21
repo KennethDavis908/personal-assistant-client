@@ -8,7 +8,7 @@
         <div *ngIf="toDoList">
             <div *ngIf="toDoList.tasks?.length">
                 <div *ngFor="let task of toDoList.tasks">
-                    <mat-checkbox color="primary">{{ task.name }}</mat-checkbox>
+                    <mat-checkbox color="primary" [checked]="task.complete" (change)="updateTaskCompleted(task)">{{ task.name }}</mat-checkbox>
                 </div>
             </div>
             <div *ngIf="!toDoList.tasks?.length" class="task-list-message"><i>No Items To Display</i></div>

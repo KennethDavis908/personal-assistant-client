@@ -26,17 +26,27 @@ export class MainPageComponent {
           if (toDoList.id) this.toDoList = toDoList;
           this.toDoListLoading = false
         },
-        error: (error) => {
+        error: () => {
           this.toDoListLoading = false
         }
       }
     )
   }
 
-  addNewTask(task: Task) {
+  upsertTask(task: Task) {
     this.taskService.upsertTask(task).subscribe(
       (result: Task) => {
-        this.toDoList.tasks.push(result)
+        if (task.id) {
+          this.toDoList.tasks = this.toDoList.tasks.map(
+            existingTask => {
+              if(result.id === existingTask.id) return result
+              return existingTask
+            }
+          )
+        } else {
+          this.toDoList.tasks.push(result)
+        }
+        
       }
     )
   }

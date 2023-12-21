@@ -26,4 +26,8 @@ export class DailyToDoComponent {
       }
     });
   }
+
+  updateTaskCompleted = (task: Task): void => {
+    this.newTaskEvent.emit({...task, complete: !task.complete})
+  }
 }
