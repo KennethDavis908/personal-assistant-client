@@ -1,8 +1,10 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { Task } from 'src/app/models/task';
 import { ToDoList } from 'src/app/models/to-do-list';
 import { MatDialog } from '@angular/material/dialog';
 import { NewToDoListItemDialogComponent } from '../new-to-do-list-item-dialog/new-to-do-list-item-dialog.component';
+import { TaskService } from 'src/app/services/task.service';
+import { ToDoListService } from 'src/app/services/to-do-list.service';
 
 @Component({
   selector: 'app-daily-to-do',
@@ -10,11 +12,28 @@ import { NewToDoListItemDialogComponent } from '../new-to-do-list-item-dialog/ne
   styleUrls: ['./daily-to-do.component.css']
 })
 export class DailyToDoComponent {
-  @Input() toDoList: ToDoList
-  @Input() loading: boolean
-  @Output() newTaskEvent = new EventEmitter();
+  toDoList: ToDoList
+  loading: boolean = true
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private taskService: TaskService,
+    private toDoListService: ToDoListService,
+  ) {}
+
+  ngOnInit(): void {
+    this.toDoListService.getByDate(new Date()).subscribe(
+      {
+        next: (toDoList) => {
+          if (toDoList.id) this.toDoList = toDoList;
+          this.loading = false
+        },
+        error: () => {
+          this.loading = false
+        }
+      }
+    )
+  }
 
   addNewToDoListItem = (): void => {
     const dialogRef = this.dialog.open(NewToDoListItemDialogComponent);
@@ -22,12 +41,29 @@ export class DailyToDoComponent {
     dialogRef.afterClosed().subscribe((result: Task) => {
       if (result) {
         result.toDoListId = this.toDoList.id
-        this.newTaskEvent.emit(result)
+        this.upsertTask(result)
       }
     });
   }
 
+  upsertTask(task: Task) {
+    this.taskService.upsertTask(task).subscribe(
+      (result: Task) => {
+        if (task.id) {
+          this.toDoList.tasks = this.toDoList.tasks.map(
+            existingTask => {
+              if(result.id === existingTask.id) return result
+              return existingTask
+            }
+          )
+        } else {
+          this.toDoList.tasks.push(result)
+        }
+      }
+    )
+  }
+
   updateTaskCompleted = (task: Task): void => {
-    this.newTaskEvent.emit({...task, complete: !task.complete})
+    this.upsertTask({...task, complete: !task.complete})
   }
 }
