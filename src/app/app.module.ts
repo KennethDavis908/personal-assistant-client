@@ -14,9 +14,12 @@ import { NewToDoListItemDialogComponent } from './components/new-to-do-list-item
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,7 @@ import { MainPageComponent } from './components/main-page/main-page.component';
     DailyToDoComponent,
     NewToDoListItemDialogComponent,
     MainPageComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,11 +49,18 @@ import { MainPageComponent } from './components/main-page/main-page.component';
       progressBar: true,
       maxOpened: 5,
     }),
+    AuthModule.forRoot(environment.auth0),
   ],
   exports: [
     
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

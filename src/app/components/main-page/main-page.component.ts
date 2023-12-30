@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService, User } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-main-page',
@@ -7,5 +8,14 @@ import { Component } from '@angular/core';
 })
 export class MainPageComponent {
 
-  constructor() {}
+  user: User;
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.user$.subscribe((success) => {
+      this.user = success as User;
+      console.log(this.user)
+    });
+  }
 }
