@@ -17,9 +17,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { MainPageComponent } from './components/main-page/main-page.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment } from 'src/environments/environment';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { environment } from 'src/environments/environment';
     DailyToDoComponent,
     NewToDoListItemDialogComponent,
     MainPageComponent,
-    SignInComponent,
+    NavbarComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import { environment } from 'src/environments/environment';
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
+    MatToolbarModule,
     MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
@@ -49,7 +53,24 @@ import { environment } from 'src/environments/environment';
       progressBar: true,
       maxOpened: 5,
     }),
-    AuthModule.forRoot(environment.auth0),
+    AuthModule.forRoot(
+      {
+        ...environment.auth0,
+        httpInterceptor: {
+          allowedList: [
+            {
+              uri: `${environment.personalAssistantApi.personalAssistantApiRoot}*`,
+              tokenOptions: {
+                authorizationParams: {
+                  audience: environment.auth0.authorizationParams.audience,
+                  scope: environment.auth0.authorizationParams.scope
+                }
+              }
+            }
+          ]
+        }
+      }
+    ),
   ],
   exports: [
     

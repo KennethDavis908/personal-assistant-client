@@ -17,7 +17,7 @@ export class ToDoListService {
     return this.http.get<ToDoList>(`${environment.personalAssistantApi.toDoList.getByDate}/${date.toISOString().split('T')[0]}`).pipe(
       catchError((error) => {
         this.toastService.error(
-          `Failed to retrieve to do list, please try again later`,
+          `Failed to retrieve to do list due to HTTP ${error.status}`,
           'Error retrieving To Do List'
         );
         throw error

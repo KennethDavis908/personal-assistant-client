@@ -17,7 +17,7 @@ export class TaskService {
     return this.http.put<Task>(environment.personalAssistantApi.task.upsert, task).pipe(
       catchError((error) => {
         this.toastService.error(
-          `Failed to save task, please try again later`,
+          `Failed to save task due to HTTP ${error.status}`,
           'Error Saving Task'
         );
         throw error;

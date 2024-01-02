@@ -1,13 +1,19 @@
 import * as config from '../../auth_config.json';
 
-const { domain, clientId, 
-    // authorizationParams: { audience } 
+const { 
+    domain, 
+    clientId, 
+    authorizationParams: { 
+        audience, 
+        scope 
+    } 
 } = config as {
     domain: string;
     clientId: string;
-    // authorizationParams: {
-    //     audience?: string;
-    // },
+    authorizationParams: {
+        audience: string;
+        scope: string;
+    },
 };
 
 const personalAssistantApiRoot = 'http://localhost:8080/';
@@ -32,6 +38,8 @@ export const environment = {
         clientId,
         authorizationParams: {
             redirect_uri: `${window.location.origin}/daily`,
+            audience,
+            scope
         },
     },
 }

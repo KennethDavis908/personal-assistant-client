@@ -1,0 +1,6 @@
+<mat-toolbar>
+    <span>Personal Assistant</span>
+    <span class="spacer"></span>
+    <button mat-button class="navbar-item" color="primary" (click)="login()" *ngIf="!authenticated">Login</button>
+    <button mat-button class="navbar-item" color="primary" (click)="logout()" *ngIf="authenticated">Logout</button>
+</mat-toolbar>

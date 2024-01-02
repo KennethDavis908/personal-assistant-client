@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainPageComponent } from './components/main-page/main-page.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/signIn', pathMatch: 'full' },
-  { path: 'signIn', component: SignInComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   { path: 'daily', component: MainPageComponent, canActivate: [AuthGuard] },
 ]
 
