@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Task } from 'src/app/models/task';
 import { ToDoList } from 'src/app/models/to-do-list';
 import { MatDialog } from '@angular/material/dialog';
-import { NewToDoListItemDialogComponent } from '../new-to-do-list-item-dialog/new-to-do-list-item-dialog.component';
+import { NewToDoListItemDialogComponent } from './new-to-do-list-item-dialog/new-to-do-list-item-dialog.component';
 import { TaskService } from 'src/app/services/task.service';
 import { ToDoListService } from 'src/app/services/to-do-list.service';
 
@@ -46,7 +46,7 @@ export class DailyToDoComponent {
     });
   }
 
-  upsertTask(task: Task) {
+  upsertTask = (task: Task) => {
     this.taskService.upsertTask(task).subscribe(
       (result: Task) => {
         if (task.id) {

@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
-import { NewToDoListItemDialogComponent } from './components/new-to-do-list-item-dialog/new-to-do-list-item-dialog.component';
+import { NewToDoListItemDialogComponent } from './components/daily-to-do/new-to-do-list-item-dialog/new-to-do-list-item-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +22,10 @@ import { environment } from 'src/environments/environment';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoginComponent } from './components/login/login.component';
+import { DailyNotesComponent } from './components/daily-notes/daily-notes.component';
+import { NoteCardComponent } from './components/daily-notes/note-card/note-card.component';
+import { NewNoteDialogComponent } from './components/daily-notes/new-note-dialog/new-note-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +35,9 @@ import { LoginComponent } from './components/login/login.component';
     MainPageComponent,
     NavbarComponent,
     LoginComponent,
+    DailyNotesComponent,
+    NoteCardComponent,
+    NewNoteDialogComponent,
   ],
   imports: [
     BrowserModule,

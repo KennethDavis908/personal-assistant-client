@@ -17,8 +17,9 @@ const {
 };
 
 const personalAssistantApiRoot = 'http://localhost:8080/';
-const personalAssistantApiTaskRoot = `${personalAssistantApiRoot}task`
-const personalAssistantApiToDoListRoot = `${personalAssistantApiRoot}to-do-list`
+const personalAssistantApiTaskRoot = `${personalAssistantApiRoot}task`;
+const personalAssistantApiNoteRoot = `${personalAssistantApiRoot}note`;
+const personalAssistantApiToDoListRoot = `${personalAssistantApiRoot}to-do-list`;
 
 export const environment = {
     production: false,
@@ -31,6 +32,10 @@ export const environment = {
         personalAssistantApiToDoListRoot,
         toDoList: {
             getByDate: `${personalAssistantApiToDoListRoot}`
+        },
+        note: {
+            upsert: `${personalAssistantApiNoteRoot}`,
+            getByDate: `${personalAssistantApiNoteRoot}`
         }
     },
     auth0: {
