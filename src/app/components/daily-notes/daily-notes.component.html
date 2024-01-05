@@ -1,0 +1,36 @@
+<mat-card class="note-board">
+    <mat-card-header class="center">
+        <mat-card-title>
+            Notes
+        </mat-card-title>
+    </mat-card-header>
+    <hr style="width:90%">
+    <mat-card-content *ngIf="!loading; else loadingSpinner">
+        <!-- Content Loaded Successfully -->
+        <div *ngIf="notes">
+            <div *ngIf="notes.length">
+                <div class="container responsive-grid">
+                    <div *ngFor="let note of notes">
+                        <app-note-card [note]="note"></app-note-card>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!notes.length" class="notes-list-message"><i>No Notes To Display</i></div>
+        </div>
+
+        <!-- Content Failed To Load -->
+        <div *ngIf="!notes" class="notes-list-message">
+            <i>Error Loading Content, Please Try Again Later.</i>
+        </div>
+    </mat-card-content>
+    <mat-card-actions *ngIf="!loading && notes" align="end">
+        <button mat-button (click)="addNewNote()" color="primary">New Note</button>
+    </mat-card-actions>
+</mat-card>
+
+<!-- Content Loading -->
+<ng-template #loadingSpinner>
+    <mat-card-content class="center">
+        <mat-spinner></mat-spinner>
+    </mat-card-content>
+</ng-template>

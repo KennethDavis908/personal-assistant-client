@@ -1,0 +1,8 @@
+.flex-parent-element {
+    display: flex;
+}
+
+.child {
+    flex: 1;
+    margin: 1em;
+}

@@ -1,0 +1,26 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.NgxEditor__Wrapper {
+    min-height: 20em;
+}
+
+.notes-list-message {
+    text-align: center;
+    margin: 1em;
+    font-size: .9em;
+    color: gray;
+}
+
+.container {
+    padding: 24px;
+}
+
+.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 24px;
+}

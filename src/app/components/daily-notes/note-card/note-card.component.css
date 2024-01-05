@@ -1,0 +1,9 @@
+.note-card {
+    background-color: #feff9c;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
